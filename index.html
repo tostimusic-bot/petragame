@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>PETRA · Más duros que la piedra</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div class="grain"></div>
+  <main id="app">
+    <section id="home" class="screen active">
+      <div class="hero">
+        <img class="logo" src="assets/petra-logo.jpeg" alt="Logo PETRA">
+        <div class="eyebrow">CONCURSO OFICIAL · EDICIÓN ROCK</div>
+        <h1>MÁS DUROS<br><span>QUE LA PIEDRA</span></h1>
+        <p class="lead">¿Cuánto conoces realmente a tu gente?</p>
+        <div class="stats"><span>10 PERSONAS</span><i>✦</i><span>10 CURIOSIDADES</span><i>✦</i><span>1 GANADOR</span></div>
+        <button id="startBtn" class="primary">🤘 EMPEZAR A JUGAR</button>
+        <p class="small">Sin pistas. Sin miedo. Solo rock and roll.</p>
+      </div>
+    </section>
+
+    <section id="nameScreen" class="screen">
+      <div class="panel narrow">
+        <div class="mini-brand">PETRA <span>⚡</span></div>
+        <div class="eyebrow">ANTES DE SUBIR AL ESCENARIO</div>
+        <h2>¿CÓMO TE LLAMAS?</h2>
+        <p>Escribe tu nombre para guardar tu puntuación.</p>
+        <input id="playerName" maxlength="40" placeholder="Tu nombre o apodo" autocomplete="name">
+        <button id="beginQuiz" class="primary">VAMOS ALLÁ →</button>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="screen">
+      <div class="topline"><div class="mini-brand">PETRA <span>⚡</span></div><div id="progressText">01 / 10</div></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="panel question-panel">
+        <div class="eyebrow">CURIOSIDAD <span id="qNumber">01</span></div>
+        <h2 id="questionText"></h2>
+        <p class="muted">¿A quién le corresponde?</p>
+        <div id="choices" class="choices"></div>
+        <div class="quiz-actions">
+          <button id="backBtn" class="secondary">← ANTERIOR</button>
+          <button id="nextBtn" class="primary">SIGUIENTE →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="doneScreen" class="screen">
+      <div class="panel narrow center">
+        <div class="big-icon">🤘</div><div class="eyebrow">HAS TERMINADO</div>
+        <h2>¡BUEN CONCIERTO!</h2>
+        <p id="saveMessage">Tus respuestas están listas.</p>
+        <p class="muted">La clasificación y el ganador se desvelarán al final. ¡Que siga el rock!</p>
+        <button id="homeBtn" class="secondary">VOLVER AL INICIO</button>
+      </div>
+    </section>
+
+    <section id="adminScreen" class="screen">
+      <div class="topline"><div class="mini-brand">PETRA <span>⚡</span></div><button id="logoutBtn" class="secondary smallbtn">SALIR</button></div>
+      <div class="panel">
+        <div class="eyebrow">ZONA PRIVADA</div><h2>MARCADOR DE LA NOCHE</h2>
+        <p class="muted">Las puntuaciones solo aparecen aquí, no en los móviles de los jugadores.</p>
+        <div id="adminLogin">
+          <input id="adminEmail" type="email" placeholder="Correo de administración">
+          <input id="adminPassword" type="password" placeholder="Contraseña">
+          <button id="loginBtn" class="primary">ENTRAR AL MARCADOR</button>
+          <p id="loginError" class="error"></p>
+        </div>
+        <div id="adminResults" hidden>
+          <div class="admin-toolbar"><strong id="countLabel">0 participantes</strong><button id="refreshBtn" class="secondary">ACTUALIZAR</button></div>
+          <div id="leaderboard"></div>
+          <button id="exportBtn" class="primary">DESCARGAR RESULTADOS CSV</button>
+          <p class="small">En caso de empate, se muestran todos los participantes con la puntuación máxima.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><span>⚡ PETRA · MÁS DUROS QUE LA PIEDRA ⚡</span><a href="#admin" id="adminLink">ADMIN</a></footer>
+  <script src="app.js"></script>
+</body>
+</html>
