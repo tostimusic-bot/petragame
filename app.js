@@ -13,12 +13,12 @@ const QUESTIONS = [
 ];
 const $ = id => document.getElementById(id);
 let player = "", current = 0, answers = Array(QUESTIONS.length).fill("");
-let supabase = null, session = null, submissions = [];
+let supabaseClient = null, session = null, submissions = [];
 
 function show(id){ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active")); $(id).classList.add("active"); window.scrollTo(0,0); }
 function configured(){ return window.PETRA_CONFIG && window.PETRA_CONFIG.SUPABASE_URL.startsWith("https://") && window.PETRA_CONFIG.SUPABASE_ANON_KEY.startsWith("ey"); }
 if (!window.PETRA_CONFIG?.DEMO_MODE && configured() && window.supabase) {
-  supabase = window.supabase.createClient(PETRA_CONFIG.SUPABASE_URL, PETRA_CONFIG.SUPABASE_ANON_KEY);
+  supabaseClient = window.supabase.createClient(PETRA_CONFIG.SUPABASE_URL, PETRA_CONFIG.SUPABASE_ANON_KEY);
 }
 $("startBtn").onclick=()=>show("nameScreen");
 $("beginQuiz").onclick=()=>{
@@ -49,7 +49,7 @@ $("nextBtn").onclick=async()=>{
 async function submitAnswers(){
   const record={player_name:player,answers,score:answers.reduce((n,a,i)=>n+(a===QUESTIONS[i].answer?1:0),0)};
   try{
-    if(supabase){const {error}=await supabase.from("petra_submissions").insert({player_name:player,answers,score:record.score});if(error)throw error;}
+    if(supabaseClient){const {error}=await supabaseClient.from("petra_submissions").insert({player_name:player,answers,score:record.score});if(error)throw error;}
     else {const all=JSON.parse(localStorage.getItem("petra_demo_submissions")||"[]");all.push({...record,created_at:new Date().toISOString()});localStorage.setItem("petra_demo_submissions",JSON.stringify(all));}
     $("saveMessage").textContent="¡Respuestas guardadas! Gracias, "+player+".";
   }catch(e){$("saveMessage").textContent="No se han podido guardar las respuestas: "+e.message;return;}
@@ -57,17 +57,17 @@ async function submitAnswers(){
 }
 $("homeBtn").onclick=()=>{ $("playerName").value=""; show("home"); };
 $("adminLink").onclick=e=>{e.preventDefault();show("adminScreen");};
-$("logoutBtn").onclick=()=>{if(supabase)supabase.auth.signOut();$("adminResults").hidden=true;$("adminLogin").hidden=false;show("home");};
+$("logoutBtn").onclick=()=>{if(supabaseClient)supabaseClient.auth.signOut();$("adminResults").hidden=true;$("adminLogin").hidden=false;show("home");};
 $("loginBtn").onclick=async()=>{
   $("loginError").textContent="";
-  if(!supabase){$("loginError").textContent="La administración compartida requiere configurar Supabase. En modo demo, consulta los resultados en este mismo navegador.";return;}
-  const {data,error}=await supabase.auth.signInWithPassword({email:$("adminEmail").value,password:$("adminPassword").value});
+  if(!supabaseClient){$("loginError").textContent="La administración compartida requiere configurar Supabase. En modo demo, consulta los resultados en este mismo navegador.";return;}
+  const {data,error}=await supabaseClient.auth.signInWithPassword({email:$("adminEmail").value,password:$("adminPassword").value});
   if(error){$("loginError").textContent=error.message;return;}
   session=data.session; await loadResults();
 };
 async function loadResults(){
-  if(supabase){
-    const {data,error}=await supabase.from("petra_submissions").select("*").order("created_at",{ascending:true});
+  if(supabaseClient){
+    const {data,error}=await supabaseClient.from("petra_submissions").select("*").order("created_at",{ascending:true});
     if(error){$("loginError").textContent=error.message;return;} submissions=data||[];
   } else submissions=JSON.parse(localStorage.getItem("petra_demo_submissions")||"[]");
   renderResults();
