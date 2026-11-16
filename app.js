@@ -128,12 +128,7 @@ $("adminLink").onclick = e => {
   e.preventDefault();
   show("adminScreen");
 };
-$("logoutBtn").onclick = async () => {
-  if (petraClient) await petraClient.auth.signOut();
-  $("adminResults").hidden = true;
-  $("adminLogin").hidden = false;
-  show("home");
-};
+
 $("loginBtn").onclick = async () => {
   $("loginError").textContent = "";
   if (!petraClient) {
