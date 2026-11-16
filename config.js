@@ -1,5 +1,4 @@
-// Para probar la interfaz, deja DEMO_MODE = true.
-// Para guardar respuestas entre distintos móviles, configura Supabase y cambia DEMO_MODE a false.
+// Para el evento real, pega aquí la URL y la clave anon/publishable de Supabase.
 window.PETRA_CONFIG = {
   DEMO_MODE: true,
   SUPABASE_URL: "PEGA_AQUI_TU_PROJECT_URL",

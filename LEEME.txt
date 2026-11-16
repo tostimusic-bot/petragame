@@ -1,0 +1,65 @@
+PETRA · JUEGO DE LAS 23 CURIOSIDADES
+=====================================
+
+CONTENIDO
+- index.html, styles.css, app.js: aplicación web.
+- data.js: los 23 nombres y las 23 curiosidades.
+- config.js: conexión a Supabase.
+- supabase-schema.sql: tablas y permisos de Supabase.
+- assets/petra-logo.jpeg: logo.
+
+IMPORTANTE
+La aplicación viene en modo DEMO (config.js: DEMO_MODE: true). En DEMO las respuestas se guardan solo en el navegador usado para jugar. No sirve para que 23 móviles diferentes compartan resultados.
+Para el evento, configura Supabase siguiendo estos pasos.
+
+A. CREAR / CONFIGURAR SUPABASE
+1. Entra en https://supabase.com y accede a tu cuenta.
+2. Crea un proyecto nuevo (por ejemplo, petra-rock-game). Guarda la contraseña de la base de datos.
+3. En el menú del proyecto, abre SQL Editor.
+4. Pulsa New query, abre el archivo supabase-schema.sql de esta carpeta, copia todo su contenido, pégalo en el editor y pulsa Run.
+   - Si usas la misma base de datos de la demo anterior, este script amplía el máximo de puntos a 23 y sustituye las políticas de acceso.
+5. Ve a Authentication > Sign In / Providers (o Sign In Methods) y desactiva los registros públicos de usuarios. Los jugadores no necesitan cuenta.
+6. Ve a Authentication > Users > Add user / Create new user. Crea el usuario de Laura con su correo y una contraseña. Si aparece la opción, confirma/verifica el correo.
+7. Ve a Project Settings > API (en algunas versiones: Settings > API Keys).
+8. Copia:
+   - Project URL
+   - La clave publishable o anon (NUNCA la secret ni service_role).
+
+B. PEGAR LAS CLAVES EN LA APLICACIÓN
+1. Abre config.js con un editor de texto.
+2. Sustituye PEGA_AQUI_TU_PROJECT_URL por el Project URL de Supabase.
+3. Sustituye PEGA_AQUI_TU_ANON_KEY por la clave anon/publishable.
+4. Cambia DEMO_MODE: true por DEMO_MODE: false.
+5. Guarda config.js.
+
+C. SUBIR LA NUEVA APLICACIÓN A GITHUB
+1. Entra en github.com y abre el repositorio petra-rock-game que ya usaste.
+2. Lo más sencillo para evitar mezclar archivos antiguos: en el repositorio, elimina los archivos antiguos de la aplicación y sube el CONTENIDO de esta carpeta nueva.
+   Archivos que deben quedar en la raíz del repositorio:
+   index.html, styles.css, app.js, config.js, data.js, supabase-schema.sql, LEEME.txt y la carpeta assets.
+   OJO: no subas la carpeta petra-rock-game-23 como una carpeta dentro del repositorio; sube lo que hay dentro.
+3. Si prefieres reemplazar uno por uno, asegúrate de reemplazar index.html, styles.css, app.js y config.js, y añadir data.js. Añade también el SQL y LEEME para tenerlos a mano.
+4. En GitHub pulsa Commit changes.
+
+D. VERCEL
+1. Entra en https://vercel.com y abre el proyecto conectado al repositorio petra-rock-game.
+2. Al detectar el commit nuevo, Vercel suele desplegar automáticamente. Si no, ve a Deployments y pulsa Redeploy en el último despliegue.
+3. Abre https://petragame.vercel.app y comprueba que aparece 23 PERSONAS y 23 CURIOSIDADES.
+
+E. PRUEBA ANTES DE COMPARTIR EL QR
+1. Abre la web desde tu móvil y envía una participación de prueba con tu nombre.
+2. Abre la web desde otro móvil (o una ventana privada) y envía otra participación de prueba.
+3. En la web, pulsa ADMIN al pie. Laura entra con el correo y contraseña que creaste en Supabase.
+4. Debe ver ambas participaciones, puntuación, ganador provisional y el detalle de las 23 respuestas de cada persona.
+5. Prueba ACTUALIZAR y DESCARGAR RESULTADOS CSV.
+6. Borra las dos participaciones de prueba desde Supabase > Table Editor > petra_submissions antes del juego real.
+
+DURANTE EL EVENTO
+- Los participantes solo necesitan abrir el enlace/QR, poner su nombre y responder.
+- Laura entra en ADMIN desde cualquier dispositivo y pulsa ACTUALIZAR para cargar las respuestas nuevas.
+- Los jugadores no ven la clasificación ni las respuestas correctas.
+
+NOTAS
+- Se conserva literalmente el texto de las curiosidades tal como lo enviaste, salvo una errata evidente en “énfasis” para facilitar la lectura.
+- El resultado se calcula en el navegador; para un juego informal vale, pero una persona técnica podría inspeccionar el código y averiguar las respuestas correctas.
+- No compartas nunca una clave service_role. La clave anon/publishable es la que se usa en config.js.
