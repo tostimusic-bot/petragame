@@ -1,1 +1,160 @@
-*{box-sizing:border-box}html{background:#090909;color:#f4eee5;font-family:Arial,Helvetica,sans-serif}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#29221d 0,#111 42%,#070707 100%);color:#f4eee5}.grain{position:fixed;inset:0;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}#app{max-width:850px;margin:auto;padding:24px 18px 90px;min-height:94vh}.screen{display:none;min-height:75vh;align-items:center;justify-content:center}.screen.active{display:flex}.hero,.panel{width:100%;max-width:700px;margin:auto}.hero{text-align:center}.logo{width:min(75%,390px);max-height:230px;object-fit:contain;display:block;margin:0 auto 20px;mix-blend-mode:screen}.eyebrow{color:#d66b35;font-size:.76rem;font-weight:800;letter-spacing:.19em;text-transform:uppercase;margin:12px 0}.hero h1{font-size:clamp(2.3rem,8vw,5rem);line-height:.94;letter-spacing:-.045em;margin:14px 0;text-shadow:0 3px 25px #000}.hero h1 span{color:#d65a2d}.lead{font-size:1.2rem;color:#ddd0c2}.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;color:#c6b6a5;font-size:.72rem;font-weight:bold;letter-spacing:.1em;margin:26px 0}.stats i{color:#d65a2d;font-style:normal}.primary,.secondary{border:0;border-radius:5px;padding:15px 20px;font-weight:900;letter-spacing:.06em;cursor:pointer}.primary{background:linear-gradient(135deg,#e06b32,#9d2c1d);color:white;box-shadow:0 5px 22px #0008}.primary:hover{filter:brightness(1.12)}.secondary{background:#282522;color:#eee;border:1px solid #625448}.panel{background:linear-gradient(145deg,#1d1b19,#111);border:1px solid #574638;border-radius:12px;padding:clamp(20px,5vw,38px);box-shadow:0 20px 60px #0009}.narrow{max-width:520px}.panel h2{font-size:clamp(1.6rem,5vw,2.6rem);margin:8px 0 14px}.panel p{color:#c8bfb6;line-height:1.5}.panel input,.choices select{width:100%;padding:15px;border-radius:5px;border:1px solid #65594d;background:#090909;color:white;font-size:1rem;margin:12px 0 18px}.panel button{margin-top:8px}.panel .primary{width:100%}.mini-brand{font-weight:1000;letter-spacing:.2em;font-size:1.1rem}.mini-brand span{color:#e46b35}.topline{width:100%;display:flex;align-items:center;justify-content:space-between;max-width:700px;margin:0 auto 16px}.question-panel{max-width:700px}.question-panel h2{font-size:clamp(1.35rem,4vw,2rem);line-height:1.25}.muted,.small{color:#a99e92!important}.small{font-size:.8rem}.progress{height:7px;max-width:700px;margin:0 auto 18px;background:#29231f;border-radius:9px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,#9d2c1d,#e87939);transition:width .2s}.choices select{margin-bottom:8px}.quiz-actions{display:flex;justify-content:space-between;gap:12px;margin-top:22px}.quiz-actions button{flex:1}.center{text-align:center}.big-icon{font-size:3rem}.admin-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0}.rank{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #38312b}.rankno{width:35px;color:#d87943}.rank strong{flex:1}.points{font-weight:bold;color:#e58a50}.rank.winner{background:#4a2c1d44}.winnerbox{padding:16px;background:#442719;border:1px solid #bd6335;border-radius:6px;margin:18px 0;font-weight:bold}.answers-heading{margin-top:30px;color:#e58a50}.submission{border-bottom:1px solid #39312a;padding:12px 2px;color:#eee}.submission summary{cursor:pointer;font-weight:bold}.submission ol{padding-left:24px;color:#cfc4b9;line-height:1.5}.submission li{padding:5px 0}.error{color:#ff9278!important}.smallbtn{padding:9px 13px}footer{position:fixed;bottom:0;left:0;right:0;background:#090909eF;border-top:1px solid #30251e;padding:14px 20px;display:flex;justify-content:center;gap:30px;font-size:.72rem;letter-spacing:.08em;color:#8f8174}footer a{color:#d87943;text-decoration:none;font-weight:bold}button:disabled{opacity:.35;cursor:not-allowed}@media(max-width:520px){#app{padding:18px 12px 85px}.stats{gap:7px;font-size:.62rem}.quiz-actions button{padding:13px 9px;font-size:.75rem}.panel{padding:22px 17px}footer{font-size:.58rem;gap:12px}}
+
+*{box-sizing:border-box}
+html{background:#090909;color:#f4eee5;font-family:Arial,Helvetica,sans-serif}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#29221d 0,#111 42%,#070707 100%);color:#f4eee5}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+#app{max-width:850px;margin:auto;padding:24px 18px 90px;min-height:94vh}
+.screen{display:none;min-height:75vh;align-items:center;justify-content:center}
+.screen.active{display:flex}
+.hero,.panel{width:100%;max-width:700px;margin:auto}
+.hero{text-align:center}
+.logo{width:min(75%,390px);max-height:230px;object-fit:contain;display:block;margin:0 auto 20px;mix-blend-mode:screen}
+.eyebrow{color:#d66b35;font-size:.76rem;font-weight:800;letter-spacing:.19em;text-transform:uppercase;margin:12px 0}
+.hero h1{font-size:clamp(2.3rem,8vw,5rem);line-height:.94;letter-spacing:-.045em;margin:14px 0;text-shadow:0 3px 25px #000}
+.hero h1 span{color:#d65a2d}
+.lead{font-size:1.2rem;color:#ddd0c2}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;color:#c6b6a5;font-size:.72rem;font-weight:bold;letter-spacing:.1em;margin:26px 0}
+.stats i{color:#d65a2d;font-style:normal}
+.primary,.secondary{border:0;border-radius:5px;padding:15px 20px;font-weight:900;letter-spacing:.06em;cursor:pointer}
+.primary{background:linear-gradient(135deg,#e06b32,#9d2c1d);color:white;box-shadow:0 5px 22px #0008}
+.primary:hover{filter:brightness(1.12)}
+.secondary{background:#282522;color:#eee;border:1px solid #625448}
+.panel{background:linear-gradient(145deg,#1d1b19,#111);border:1px solid #574638;border-radius:12px;padding:clamp(20px,5vw,38px);box-shadow:0 20px 60px #0009}
+.narrow{max-width:520px}
+.panel h2{font-size:clamp(1.6rem,5vw,2.6rem);margin:8px 0 14px}
+.panel p{color:#c8bfb6;line-height:1.5}
+.panel input,.choices select{width:100%;padding:15px;border-radius:5px;border:1px solid #65594d;background:#090909;color:white;font-size:1rem;margin:12px 0 18px}
+.panel button{margin-top:8px}
+.panel .primary{width:100%}
+.mini-brand{font-weight:1000;letter-spacing:.2em;font-size:1.1rem}
+.mini-brand span{color:#e46b35}
+.topline{width:100%;display:flex;align-items:center;justify-content:space-between;max-width:700px;margin:0 auto 16px}
+.question-panel{max-width:700px}
+.question-panel h2{font-size:clamp(1.35rem,4vw,2rem);line-height:1.25}
+.muted,.small{color:#a99e92!important}
+.small{font-size:.8rem}
+.progress{height:7px;max-width:700px;margin:0 auto 18px;background:#29231f;border-radius:9px;overflow:hidden}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,#9d2c1d,#e87939);transition:width .2s}
+.choices select{margin-bottom:8px}
+.quiz-actions{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+.quiz-actions button{flex:1}
+.center{text-align:center}
+.big-icon{font-size:3rem}
+.admin-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0}
+.rank{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #38312b}
+.rankno{width:35px;color:#d87943}
+.rank strong{flex:1}
+.points{font-weight:bold;color:#e58a50}
+.rank.winner{background:#4a2c1d44}
+.winnerbox{padding:16px;background:#442719;border:1px solid #bd6335;border-radius:6px;margin:18px 0;font-weight:bold}
+.answers-heading{margin-top:30px;color:#e58a50}
+.submission{border-bottom:1px solid #39312a;padding:12px 2px;color:#eee}
+.submission summary{cursor:pointer;font-weight:bold}
+.submission ol{padding-left:24px;color:#cfc4b9;line-height:1.5}
+.submission li{padding:5px 0}
+.error{color:#ff9278!important}
+.smallbtn{padding:9px 13px}
+footer{position:fixed;bottom:0;left:0;right:0;background:#090909eF;border-top:1px solid #30251e;padding:14px 20px;display:flex;justify-content:center;gap:30px;font-size:.72rem;letter-spacing:.08em;color:#8f8174}
+footer a{color:#d87943;text-decoration:none;font-weight:bold}
+button:disabled{opacity:.35;cursor:not-allowed}
+
+/* PANTALLA DE NORMAS PETRA */
+
+.rules-panel{
+  border-color:rgba(230,170,55,.55);
+  box-shadow:0 0 35px rgba(230,170,55,.10),0 20px 60px #0009;
+}
+
+.rules-brand{
+  text-align:center;
+  font-size:clamp(32px,8vw,48px);
+  font-weight:1000;
+  font-style:italic;
+  letter-spacing:-2px;
+  line-height:1;
+  margin:0 auto 28px;
+  color:#f2bd52;
+  text-shadow:2px 2px 0 #6c3515,0 0 18px rgba(242,189,82,.25);
+}
+
+.rules-brand span{
+  color:#fff;
+  font-size:.65em;
+  letter-spacing:1px;
+}
+
+.rules-eyebrow{
+  display:block;
+  text-align:center;
+  line-height:1.5;
+  margin:0 auto 18px;
+  letter-spacing:2px;
+}
+
+.rules-panel h2{
+  display:block;
+  text-align:center;
+  font-size:clamp(30px,7vw,42px);
+  line-height:1.05;
+  margin:0 0 18px;
+  font-weight:1000;
+}
+
+.rules-intro{
+  text-align:center;
+  color:#c9c2b7;
+  margin-bottom:25px;
+}
+
+.rules-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  counter-reset:rules;
+}
+
+.rules-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:15px 12px;
+  margin-bottom:9px;
+  background:rgba(255,255,255,.045);
+  border-left:3px solid #d99a32;
+  border-radius:5px;
+  color:#f4eee4;
+  font-size:15px;
+  line-height:1.45;
+}
+
+.rule-number{
+  flex:0 0 28px;
+  color:#e8ad43;
+  font-weight:900;
+  font-size:16px;
+  font-style:italic;
+}
+
+.rules-warning{
+  text-align:center;
+  color:#e8ad43;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin:24px 0 18px;
+}
+
+.rules-panel button{
+  width:100%;
+}
+
+@media(max-width:520px){
+  #app{padding:18px 12px 85px}
+  .stats{gap:7px;font-size:.62rem}
+  .quiz-actions button{padding:13px 9px;font-size:.75rem}
+  .panel{padding:22px 17px}
+  footer{font-size:.58rem;gap:12px}
+  .rules-brand{margin-bottom:24px}
+  .rules-list li{gap:10px;padding:13px 10px;font-size:14px}
+  .rule-number{flex-basis:25px}
+}
