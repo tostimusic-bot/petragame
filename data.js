@@ -1,3 +1,4 @@
+
 window.PETRA_PEOPLE = [
   "Elena Campos",
   "Laura del Bino",
@@ -21,8 +22,11 @@ window.PETRA_PEOPLE = [
   "Jorge Valencia",
   "Mario Gonzalez",
   "Juan Eizaguerri",
-  "Alvaro Sarmiento"
+  "Alvaro Sarmiento",
+  "David Mateo",
+  "Luna Vitini"
 ];
+
 window.PETRA_QUESTIONS = [
   {
     "text": "He puesto más copas de las que todo PETRA se ha bebido",
@@ -115,5 +119,13 @@ window.PETRA_QUESTIONS = [
   {
     "text": "Tocaba la batería",
     "answer": "Alvaro Sarmiento"
+  },
+  {
+    "text": "Me gustan mucho las inversiones y estoy en el camino de aprender de ello",
+    "answer": "David Mateo"
+  },
+  {
+    "text": "Me encanta ir al gimnasio",
+    "answer": "Luna Vitini"
   }
 ];
