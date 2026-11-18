@@ -61,13 +61,19 @@ $("beginQuiz").onclick = () => {
     QUESTIONS.map((q, index) => ({ ...q, originalIndex: index }))
   );
 
-  renderQuestion();
-  show("quizScreen");
+  // Mostrar las normas antes de empezar las preguntas
+  show("rulesScreen");
 };
 
 $("playerName").addEventListener("keydown", e => {
   if (e.key === "Enter") $("beginQuiz").click();
 });
+
+// Al aceptar las normas, comienza el cuestionario
+$("continueToQuiz").onclick = () => {
+  renderQuestion();
+  show("quizScreen");
+};
 
 function renderQuestion() {
   const q = shuffledQuestions[current];
