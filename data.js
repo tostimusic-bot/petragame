@@ -1,7 +1,7 @@
 
 window.PETRA_PEOPLE = [
   "Elena Campos",
-  "Laura del Bino",
+  "Laura Del Bino",
   "Marta Calvo",
   "Diego Samper",
   "Diego Trujillo",
