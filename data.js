@@ -89,7 +89,7 @@ window.PETRA_QUESTIONS = [
     "answer": "Nacho Gonzalez"
   },
   {
-    "text": "Llevando a mi peque a Urgencias, se me cerró el coche las llaves y mi peque dentro. Vinieron los bomberos y acabamos con foto de grupo",
+    "text": "Llevando a mi peque a Urgencias, se me cerró el coche con las llaves y mi peque dentro. Vinieron los bomberos y acabamos con foto de grupo",
     "answer": "Montse Mariana"
   },
   {
